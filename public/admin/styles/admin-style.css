@@ -2,6 +2,17 @@
  * Admin style css
  * 
  */
+.main-header{
+    position: fixed;
+    width:100%;
+}
+.content-wrapper{
+  padding:60px 10px;
+}
+.sidebar-menu > li > a > span{
+  height: 50px;
+}
+
 .skin-blue .main-header .navbar {
   background-color: #222;
 }
@@ -51,7 +62,7 @@
   background-color: #222;
 }
 .skin-blue .main-header li.user-header {
-  background-color: #3c8dbc;
+  background-color: #222;
 }
 .skin-blue .content-header {
   background: transparent;
@@ -115,15 +126,42 @@
 }
 .sidebar-menu > li > a > i .icon-bg {
     bottom: 0;
-    left: -42px;
+    left: -47px;
     position: absolute;
     top: 0;
     transition: left 0.2s ease-in-out 0s;
     width: 100%;
     z-index: 0;
 }
+
+/*colors*/
 .bg-danger {
     background-color: #e94b3b;
+    color: #fff;
+
+}
+.bg-orange{
+    background-color: #f98e33;
+    color: #fff;
+}
+.bg-warning {
+    background-color: #ffb61c;
+    color: #fff;
+}
+.bg-success {
+    background-color: #23ae89;
+    color: #fff;
+}
+.bg-primary-light {
+    background-color: #449dd5;
+    color: #fff;
+}
+.bg-primary {
+    background-color: #1c7ebb;
+    color: #fff;
+}
+.bg-violet {
+    background-color: #6a55c2;
     color: #fff;
 }
 
@@ -153,9 +191,25 @@
     width: 50px;
     border-right: 1px solid #e5e5e5;
     height: 50px;
-    margin: -15px 10px -15px -10px;
+    margin: -15px 10px -15px -5px;
 }
 
+
+.sidebar-menu > li{
+    font-weight: bold;
+    margin: 0;
+    position: relative;
+    text-align: left;
+    transition: all 0.25s ease-in-out 0s;
+}
+.sidebar-collapse .sidebar-menu > li > a > i, .sidebar-collapse .sidebar-menu > li > a > i .icon-bg{
+  color:#fff;
+  left: 0px;
+  transition: all 0.25s ease-in 0s;
+}
+.sidebar-menu > li > a{
+  height: 50px;
+}
 
 
 
@@ -1832,3 +1886,7 @@
     border-left: 1px solid #d2d6de;
   }
 }
+
+
+.table-bordered>thead>tr>th{vertical-align: middle;text-align:center}
+.table-bordered>tbody>tr>td{vertical-align: middle;text-align:center}

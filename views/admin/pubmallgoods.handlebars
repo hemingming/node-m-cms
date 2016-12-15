@@ -31,18 +31,32 @@
                 <img src="{{static 'admin/images/user2-160x160.png'}}" class="img-circle" alt="User Image">
 
                 <p>
-                  Node-M CMS Administrator
-                  <small>Member since Nov. 2016</small>
+                  Alexander Pierce - Web Developer
+                  <small>Member since Nov. 2012</small>
                 </p>
               </li>
               <!-- Menu Body -->
+              <li class="user-body">
+                <div class="row">
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Followers</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Sales</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Friends</a>
+                  </div>
+                </div>
+                <!-- /.row -->
+              </li>
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">注销</a>
+                  <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">退出</a>
+                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -64,13 +78,13 @@
       
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
-        <li class="active treeview">
+        <li class="treeview">
           <a href="/admin&adminmain&sid=admin.html">
             <i class="fa fa-dashboard"><span class="icon-bg bg-danger"></span></i> <span>系统信息</span>
           </a>
         </li>
 
-        <li class="treeview">
+        <li class="active treeview">
           <a href="/admin&mallgoods&sid=goods.html">
             <i class="fa fa-files-o"><span class="icon-bg bg-orange"></span></i>
             <span>商品管理</span>
@@ -93,8 +107,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> 销售订单</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> 支付订单</a></li>
+            <li><a href="/admin&ordersales&sid=pubgoods.html"><i class="fa fa-circle-o"></i> 销售订单</a></li>
+            <li><a href="/admin&orderpayment&sid=pubgoods.html"><i class="fa fa-circle-o"></i> 支付订单</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -208,12 +222,99 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
+    <section class="panel panel-default">
+        <div class="panel-heading"><strong><span class="fa fa-th"></span> 发布商品</strong></div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-0">
 
-    ndoe-m cms <br>
+                    <form class="form-horizontal ng-pristine ng-valid" role="form">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">商品类型：</label>
+                            <div class="col-sm-5">
+                                <select class="form-control">
+                                    <option>option 1</option>
+                                    <option>option 2</option>
+                                    <option>option 3</option>
+                                    <option>option 4</option>
+                                    <option>option 5</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">商品编码：</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" id="inputPassword3" placeholder="商品编码">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">商品名称：</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" id="inputPassword3" placeholder="商品名称">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">市场价格：</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" id="inputPassword3" placeholder="市场价格">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">总需价格：</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" id="inputPassword3" placeholder="总需价格">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">单次价格：</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" id="inputPassword3" placeholder="单次价格">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">上架数量：</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" id="inputPassword3" placeholder="上架数量">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">文字说明：</label>
+                            <div class="col-sm-5">
+                                <textarea type="text" class="form-control" id="inputPassword3" placeholder="文字说明"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">商品文描：</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" id="inputPassword3" placeholder="图片地址逗号间隔">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">商品图片：</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" id="inputPassword3" placeholder="图片地址逗号间隔">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-success btn-w-md">提 交</button>
+                            </div>
+                        </div>
+                    </form>  
+
+                </div>
+            </div>
+        </div>
+    </section>
     
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+
+
+
 
 
   <!-- Control Sidebar -->
@@ -411,5 +512,6 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
+
 
 {{> admin/footer}}
