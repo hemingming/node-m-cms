@@ -25,7 +25,7 @@ module.exports = function(app){
 
 	adminController.adminRoutes(app);
     
-/*
+	/*
 	//登录
 	app.get('/login', user.login);
 

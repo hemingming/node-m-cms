@@ -17,6 +17,10 @@ module.exports = {
         app.get('/admin&ordersales*', this.adminOrdersales);
         app.get('/admin&orderpayment*', this.adminOrderpayment);
 
+        //用户管理
+        app.get('/admin&userdatas*', this.adminUserdatas);
+        app.get('/admin&userinformation*', this.adminUserinformation);
+
         //消息管理
         app.get('/admin&news*', this.adminNews);
         app.get('/admin&pubnews*', this.adminPubnews);
@@ -61,6 +65,19 @@ module.exports = {
             layout : 'adminmain'
         })
     },
+
+
+    adminUserdatas : function(req, res, next){
+        res.render('admin/userdatas', {
+            layout : 'adminmain'
+        })  
+    },
+
+    adminUserinformation : function(req, res, next){
+        res.render('admin/userinformation', {
+            layout : 'adminmain'
+        })  
+    },    
 
 
     adminNews : function(req, res, next){
