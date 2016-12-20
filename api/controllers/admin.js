@@ -1,11 +1,11 @@
 
-const admindb = require('../models/admin/dbconfig.js'),
+var admindb = require('../models/admin/dbconfig.js'),
 	  crypto = require('crypto'),
 	  os = require('os');
 
 
 module.exports = {
-    adminRoutes : function(app){
+    Routes : function(app){
 
         //系统首页登录
         app.get('/admin&login*', this.adminLogin);
@@ -17,6 +17,8 @@ module.exports = {
         //商品管理
         app.get('/admin&mallgoods*', this.adminMallgoods);
         app.get('/admin&pubgoods*', this.adminPubgoods);
+
+        app.post('/adminputitem*', this.adminPutitem);
 
         //订单管理
         app.get('/admin&ordersales*', this.adminOrdersales);
@@ -92,6 +94,26 @@ module.exports = {
         res.render('admin/pubmallgoods', {
             layout : 'adminmain'
         })
+        console.log(888);
+    },
+
+    adminPutitem : function(req, res){
+        
+        var itemtype    = req.body.itemType;    //商品类型
+        var itemname    = req.body.itemName;    //商品名称
+        var itemcode    = req.body.itemCode;    //商品编码
+        var itemnumber  = req.body.itemNumber;  //商品数量
+        var itemprice   = req.body.itemPrice;   //市场价格
+        var itemunit    = req.body.itemPriced;  //单次价格
+        var itemtoal    = req.body.itemPricec;  //总需价格
+        var itempic     = req.body.itemPic;        //文描图片
+        var itemimage   = req.body.itemImage;     //商品图片
+        var itemtext    = req.body.itemText;
+        
+        console.log(itemtype);
+        req.flash('message','提交成功!');
+        return res.redirect('/admin&pubgoods&sid=pubgoods.html');
+
     },
 
 

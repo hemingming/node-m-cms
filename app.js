@@ -4,7 +4,7 @@
  * version 1.0.0
  */
 
-const http = require('http'),
+var http = require('http'),
     fs = require('fs'),
     path = require('path'),
     connect = require('connect'),

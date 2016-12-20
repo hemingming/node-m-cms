@@ -162,77 +162,81 @@
             <div class="row">
                 <div class="col-md-8 col-md-offset-0">
 
-                    <form class="form-horizontal ng-pristine ng-valid" role="form">
+                    <form class="form-horizontal" method="post" action="/adminputitem.html">
                         <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">商品类型：</label>
                             <div class="col-sm-5">
-                                <select class="form-control">
-                                    <option>option 1</option>
-                                    <option>option 2</option>
-                                    <option>option 3</option>
-                                    <option>option 4</option>
-                                    <option>option 5</option>
+                                <select class="form-control" name="itemType">
+                                    <option value="1">数码影音</option>
+                                    <option value="2">手机电脑</option>
+                                    <option value="3">母婴商品</option>
+                                    <option value="4">美妆商品</option>
+                                    <option value="5">轻奢物品</option>
+                                    <option value="6">水果保健食品</option>
+                                    <option value="7">黄金珠宝</option>
+                                    <option value="8">生活用品</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label">商品编码：</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" id="inputPassword3" placeholder="商品编码">
+                                <input type="text" name="itemCode" class="form-control"  placeholder="商品编码">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label">商品名称：</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" id="inputPassword3" placeholder="商品名称">
+                                <input name="itemName" type="text" class="form-control"  placeholder="商品名称">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label">市场价格：</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" id="inputPassword3" placeholder="市场价格">
+                                <input type="text" name="itemPrice" class="form-control" placeholder="市场价格">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label">总需价格：</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" id="inputPassword3" placeholder="总需价格">
+                                <input type="text" class="form-control" name="itemPricec" placeholder="总需价格">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label">单次价格：</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" id="inputPassword3" placeholder="单次价格">
+                                <input type="text" class="form-control" name="itemPriced" placeholder="单次价格">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label">上架数量：</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" id="inputPassword3" placeholder="上架数量">
+                                <input type="text" class="form-control" name="itemNumber" placeholder="上架数量">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label">文字说明：</label>
                             <div class="col-sm-5">
-                                <textarea type="text" class="form-control" id="inputPassword3" placeholder="文字说明"></textarea>
+                                <textarea type="text" class="form-control" name="itemText" placeholder="文字说明"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label">商品文描：</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" id="inputPassword3" placeholder="图片地址逗号间隔">
+                                <input type="text" class="form-control" name="itemPic" placeholder="图片地址逗号间隔">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label">商品图片：</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" id="inputPassword3" placeholder="图片地址逗号间隔">
+                                <input type="text" class="form-control" name="itemImage" placeholder="图片地址逗号间隔">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <button type="submit" class="btn btn-success btn-w-md">提 交</button>
+                                <p>{{message}}</p>
                             </div>
                         </div>
                     </form>  

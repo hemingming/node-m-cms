@@ -23,7 +23,7 @@ module.exports = function(app){
 	//首页
 	app.get('/', main.home);
 
-	adminController.adminRoutes(app);
+	adminController.Routes(app);
     
 	/*
 	//登录
