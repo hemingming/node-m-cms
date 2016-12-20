@@ -59,6 +59,7 @@ module.exports = {
 				}
 			})
         */
+        
         req.flash('message','account error!');
         return res.redirect('/admin&login&sid=error');
         console.log(query);
