@@ -4,14 +4,14 @@
  * version 1.0.0
  */
 
-const http    = require('http'),
+const http = require('http'),
     fs = require('fs'),
     path = require('path'),
     connect = require('connect'),
+    flash = require('connect-flash'),
     express = require('express'),
     session = require('express-session'),
     compression = require('compression'),
-    mongoose = require('mongoose'),
     voucher = require('./api/voucher/voucher.js');
  
 //express
@@ -50,9 +50,6 @@ app.use(bodyParser.json());
 //静态文件
 app.use(express.static(__dirname + '/public'));
  
-//路由文件
-require('./api/controllers/routes.js')(app);
- 
 //cookie session
 app.use(require('cookie-parser')(voucher.cookieSecret));
 app.use(require('express-session')({
@@ -63,7 +60,19 @@ app.use(require('express-session')({
     cookie: { maxAge: 60 * 10000 }
     //store: sessionStore,
 }));
- 
+app.use(flash());
+
+//局部模板
+app.use(function(req, res, next){
+	res.locals.message = req.flash('message');
+    if(!res.locals.partials) res.locals.partials = {};
+    //res.locals.partials.data = getData();
+    next();
+});
+
+//路由文件
+require('./api/controllers/routes.js')(app);
+
 //自动化视图渲染
 var autoViews = {};
 app.use(function(req, res, next){
@@ -78,13 +87,7 @@ app.use(function(req, res, next){
     // 失败转入404
     next();
 });
- 
-//局部模板
-app.use(function(req, res, next){
-    if(!res.locals.partials) res.locals.partials = {};
-    //res.locals.partials.data = getData();
-    next();
-});
+
  
 //404
 app.use(function(req, res){

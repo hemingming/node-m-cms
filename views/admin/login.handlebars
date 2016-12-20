@@ -1,0 +1,59 @@
+{{#section 'header'}}
+	{{> admin/login-head}}
+{{/section}}
+
+<body>
+<dl class="login-box">
+	<dt class="login-logo"><b> Node-M </b>CMS</dt>
+	<dd>
+		<form action="/adminlogin.html" method="post" autocomplete="off">
+			<label>
+				<span class="glyphicon glyphicon-user"></span>
+				<input name="account" type="text" class="form-control" placeholder="Account">
+			</label>
+			<label>
+				<span class="glyphicon glyphicon-lock"></span>
+				<input name="password" type="password" class="form-control" placeholder="Password">
+			</label>
+			<p class="code">
+				{{message}}
+			</p>
+			<button type="submit" class="btn btn-block btn-default modal-content">登 录</button>
+		</form>
+	</dd>
+</dl>
+
+<p class="version"><i><a href="{{website}}">{{version}}</a></i></p>
+<script src="{{static '/admin/scripts/jquery-2.2.3.min.js'}}"></script>
+<script>
+	$(function(){
+		$('[type=submit]').on('click', function(){
+			var Account = $('[type=text]').val();
+			var Password = $('[type=password]').val();
+			if(Account == ''){
+				$('p.code').text('输入帐号？');
+				return false;
+			}
+			else if(Password == ''){
+				$('p.code').text('输入密码？');
+				return false;
+			}
+			/*
+			$.ajax({
+				type		:'POST',
+				datatype	:'json',
+				url			:'/admin-login.html',
+				cache		:'false',
+				data		:{'Account' : Account, 'Password' : Password},
+				success	: function(data){
+					console.log(data);
+				},
+				error : function(data){
+					console.log(data);
+				}
+			})
+			*/
+		});
+	})
+</script>
+</body>

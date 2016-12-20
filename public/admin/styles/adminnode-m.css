@@ -1,0 +1,23 @@
+/*
+ * Node-M CMS Style @ Admin (c) author : Ming
+ * email : hemingming7@gmail.com
+ */
+
+/* global rsets */
+button{outline: none;}
+
+
+/* admin login */
+.login-box label{border-bottom: 1px solid #ccc;width:100%;position:relative;}
+.login-box .glyphicon{float:left;color:#ccc;position:absolute;right:0;top:0.65em;}
+.login-box input{float:left;width:95%;border:none;padding:0 5% 0 0;}
+.login-box p{color:#EA572C;height:20px;margin:10px 0;}
+.login-box button{color:#333;outline: none;}
+p.version{width:360px;margin:100px auto;text-align:right;}
+p.version a{color:#ccc;}
+
+/* admin main */
+
+
+
+

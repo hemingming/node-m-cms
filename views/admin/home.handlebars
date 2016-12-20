@@ -2,60 +2,7 @@
 
 <div class="wrapper">
 
-  <header class="main-header">
-    <!-- Logo -->
-    <a href="/admin&malladministrator&sid=admin.html" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>M</b>all</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Node-M</b> CMS</span>
-    </a>
-    <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-        <span class="sr-only">Toggle navigation</span>
-      </a>
-
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-          <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{static 'admin/images/user2-160x160.png'}}" class="user-image" alt="adminUser">
-              <span class="hidden-xs">Ming</span>
-            </a>
-            <ul class="dropdown-menu">
-              <!-- User image -->
-              <li class="user-header">
-                <img src="{{static 'admin/images/user2-160x160.png'}}" class="img-circle" alt="User Image">
-
-                <p>
-                  Node-M CMS Administrator
-                  <small>Member since Nov. 2016</small>
-                </p>
-              </li>
-              <!-- Menu Body -->
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">注销</a>
-                </div>
-                <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">退出</a>
-                </div>
-              </li>
-            </ul>
-          </li>
-          <!-- Control Sidebar Toggle Button -->
-          <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
-
+  {{> admin/top}}
 
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
@@ -208,207 +155,131 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
+    <div class="page page-dashboard">
+        <div class="row">
+            <div class="text-center">
+                <!-- Stats -->
+                <div class="col-lg-3 col-sm-6">
+                    <div class="panel mini-box">
+                        <span class="btn-icon btn-icon-round btn-icon-lg-alt bg-success">
+                            <span class="fa fa-rocket"></span>
+                        </span>
+                        <div class="box-info">
+                            <p class="size-h2">36 <span class="size-h4"></span></p>
+                            <p class="text-muted"><span data-translate="GROWTH" class="ng-scope">平台商品</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="panel mini-box">
+                        <span class="btn-icon btn-icon-round btn-icon-lg-alt bg-info">
+                            <i class="fa fa-users"></i>
+                        </span>
+                        <div class="box-info">
+                            <p class="size-h2">22 <span class="size-h4"></span></p>
+                            <p class="text-muted"><span data-translate="NEW_USERS" class="ng-scope">平台用户</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="panel mini-box">
+                        <span class="btn-icon btn-icon-round btn-icon-lg-alt bg-warning">
+                            <i class="fa fa-dollar"></i>
+                        </span>
+                        <div class="box-info">
+                            <p class="size-h2"><span class="size-h4">&yen;</span> 3,550,006 </p>
+                            <p class="text-muted"><span data-translate="PROFIT" class="ng-scope">平台收入</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="panel mini-box">
+                        <span class="btn-icon btn-icon-round btn-icon-lg-alt bg-danger">
+                            <i class="fa fa-shopping-cart"></i>
+                        </span>
+                        <div class="box-info">
+                            <p class="size-h2">21 <span class="size-h4"></span></p>
+                            <p class="text-muted"><span data-translate="SALES" class="ng-scope">销售数量</span></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- end stats -->
+            </div>
+        </div>
 
-    ndoe-m cms <br>
-    
+
+        <div class="panel panel-default">
+            <div class="panel-body table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>系统信息</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>服务器主机名</td>
+                            <td><span class="label label-info">{{sysname}}</span></td>
+                            <td><div class="progressbar-xs no-margin progress" value="55">
+                            <div class="progress-bar" ng-class="type &amp;&amp; 'progress-bar-' + type" role="progressbar"  style="width: 55%;"></div>
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <td>操作系统</td>
+                            <td><span class="label label-primary">{{sysplat}}</span></td>
+                            <td><div class="progressbar-xs no-margin progress" value="34" type="success">
+                                <div class="progress-bar progress-bar-success" style="width: 34%;"></div></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>服务器版本</td>
+                            <td><span class="label label-success">{{sysversion}}</span></td>
+                            <td><div class="progressbar-xs no-margin progress" value="68" type="info">
+                            <div class="progress-bar progress-bar-info" style="width: 68%;"></div>
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <td>运行的时间</td>
+                            <td><span class="label label-danger">{{runtime}}</span></td>
+                            <td><div class="progressbar-xs no-margin progress" value="52" type="warning">
+                            <div class="progress-bar progress-bar-warning" style="width: 52%;"></div>
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <td>内存总量</td>
+                            <td><span class="label label-warning">{{cmemory}} MB</span></td>
+                            <td><div class="progressbar-xs no-margin progress" value="77" type="danger">
+                            <div class="progress-bar progress-bar-danger" style="width: 77%;"></div>
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <td>空闲内存</td>
+                            <td><span class="label label-info">{{smemory}} MB</span></td>
+                            <td><div class="progressbar-xs no-margin progress" value="55" type="success">
+                            <div class="progress-bar progress-bar-success" style="width: 55%;"></div>
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <td>CPU</td>
+                            <td><span class="label label-info">{{cpu}}</span></td>
+                            <td><div class="progressbar-xs no-margin progress" value="55" type="success">
+                            <div class="progress-bar progress-bar-success" style="width: 85%;"></div>
+                            </div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
     <!-- /.content -->
+    
   </div>
   <!-- /.content-wrapper -->
 
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-      <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- Home tab content -->
-      <div class="tab-pane" id="control-sidebar-home-tab">
-        <h3 class="control-sidebar-heading">Recent Activity</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-birthday-cake bg-red"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-
-                <p>Will be 23 on April 24th</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-user bg-yellow"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
-
-                <p>New phone +1(800)555-1234</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
-
-                <p>nora@example.com</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-file-code-o bg-green"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
-
-                <p>Execution time 5 seconds</p>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-        <h3 class="control-sidebar-heading">Tasks Progress</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Custom Template Design
-                <span class="label label-danger pull-right">70%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Update Resume
-                <span class="label label-success pull-right">95%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-success" style="width: 95%"></div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Laravel Integration
-                <span class="label label-warning pull-right">50%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Back End Framework
-                <span class="label label-primary pull-right">68%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-      </div>
-      <!-- /.tab-pane -->
-      <!-- Stats tab content -->
-      <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-      <!-- /.tab-pane -->
-      <!-- Settings tab content -->
-      <div class="tab-pane" id="control-sidebar-settings-tab">
-        <form method="post">
-          <h3 class="control-sidebar-heading">General Settings</h3>
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Report panel usage
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Some information about this general settings option
-            </p>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Allow mail redirect
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Other sets of options are available
-            </p>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Expose author name in posts
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Allow the user to show his name in blog posts
-            </p>
-          </div>
-          <!-- /.form-group -->
-
-          <h3 class="control-sidebar-heading">Chat Settings</h3>
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Show me as online
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Turn off notifications
-              <input type="checkbox" class="pull-right">
-            </label>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Delete chat history
-              <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
-            </label>
-          </div>
-          <!-- /.form-group -->
-        </form>
-      </div>
-      <!-- /.tab-pane -->
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
-  <div class="control-sidebar-bg"></div>
+    {{> admin/slidebar}}
 </div>
 <!-- ./wrapper -->
 
