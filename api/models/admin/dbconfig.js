@@ -2,8 +2,6 @@
  * MongoDB mongoose Config
  */
 
-
-/*
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
@@ -24,25 +22,26 @@ var userSchema = new Schema({
 
 
 var itemSchema = new Schema({
-	itemname: String,		
-	itemcode: String,		
-	itemnumber: Number,
-	itemtype: Number,
-	itemunit: Number, 
-	itemtoal: Number,
-	itempicurl: String,
-	itempicurls: String,
-	iteampurch: Number,
+	itemtype : Number,
+	itemcode : String,
+	itemname : String,
+	itemnumber : Number,
+	itemprice : Number,
+	itemunit : Number,
+	itemtoal : Number,
+	itempic : String,
+	itemimage : String,
+	itemtext : String,
 	iteamstate: Number,
 	teamtime: Date
 
 }, { versionKey: false });
 
 
-exports.adminuser = mongoose.model('oneAdmin', userSchema, 'oneAdmin');
+exports.adminuser = mongoose.model('onemalladmin', userSchema, 'onemalladmin');
 
-exports.adminitem = mongoose.model('oneCommodity', itemSchema, 'oneCommodity');
-*/
+exports.adminitem = mongoose.model('onemallitems', itemSchema, 'onemallitems');
+
 
 
 /*

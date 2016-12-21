@@ -13,13 +13,13 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="treeview">
-          <a href="/admin&adminmain&sid=admin.html">
+          <a href="/admin&adminmain?sid={{sid}}&admin.html">
             <i class="fa fa-dashboard"><span class="icon-bg bg-danger"></span></i> <span>系统信息</span>
           </a>
         </li>
 
         <li class="active treeview">
-          <a href="/admin&mallgoods&sid=goods.html">
+          <a href="javascript:void(0);">
             <i class="fa fa-files-o"><span class="icon-bg bg-orange"></span></i>
             <span>商品管理</span>
             <span class="pull-right-container">
@@ -27,13 +27,13 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/admin&mallgoods&sid=goods.html"><i class="fa fa-circle-o"></i> 商品列表</a></li>
-            <li><a href="/admin&pubgoods&sid=pubgoods.html"><i class="fa fa-circle-o"></i> 发布商品</a></li>
+            <li><a href="/admin&mallgoods?sid={{sid}}&goods.html"><i class="fa fa-circle-o"></i> 商品列表</a></li>
+            <li><a href="/admin&pubgoods?sid={{sid}}&pubgoods.html"><i class="fa fa-circle-o"></i> 发布商品</a></li>
           </ul>
         </li>
 
         <li class="treeview">
-          <a href="#">
+          <a href="javascript:void(0);">
             <i class="fa fa-pie-chart"><span class="icon-bg bg-warning"></span></i>
             <span>订单管理</span>
             <span class="pull-right-container">
@@ -46,7 +46,7 @@
           </ul>
         </li>
         <li class="treeview">
-          <a href="#">
+          <a href="javascript:void(0);">
             <i class="fa fa-laptop"><span class="icon-bg bg-success"></span></i>
             <span>用户管理</span>
             <span class="pull-right-container">
@@ -54,12 +54,12 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/admin&userdatas&sid=user.html"><i class="fa fa-circle-o"></i> 用户列表</a></li>
-            <li><a href="/admin&userinformation&sid=user.html"><i class="fa fa-circle-o"></i> 用户信息</a></li>
+            <li><a href="/admin&userdatas?sid={{sid}}&user.html"><i class="fa fa-circle-o"></i> 用户列表</a></li>
+            <li><a href="/admin&userinformation?sid={{sid}}&user.html"><i class="fa fa-circle-o"></i> 用户信息</a></li>
           </ul>
         </li>
         <li class="treeview">
-          <a href="#">
+          <a href="javascript:void(0);">
             <i class="fa fa-edit"><span class="icon-bg bg-primary-light"></span></i> 
             <span>消息管理</span>
             <span class="pull-right-container">
@@ -72,7 +72,7 @@
           </ul>
         </li>
         <li class="treeview">
-          <a href="#">
+          <a href="javascript:void(0);">
             <i class="fa fa-table"><span class="icon-bg bg-primary"></span></i> 
             <span>数据中心</span>
             <span class="pull-right-container">

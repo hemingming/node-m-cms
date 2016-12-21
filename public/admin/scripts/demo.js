@@ -337,4 +337,11 @@
     }
 
   }
+
+
+  var url = window.location.href.split('&')[2];
+  
+
+
 })(jQuery, $.AdminLTE);
+

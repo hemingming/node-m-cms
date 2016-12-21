@@ -4,13 +4,15 @@
  * version 1.0.0
  */
 
-var http = require('http'),
+const http = require('http'),
     fs = require('fs'),
     path = require('path'),
     connect = require('connect'),
     flash = require('connect-flash'),
     express = require('express'),
     session = require('express-session'),
+    MongoStore = require('connect-mongo')(session),
+    mongoose = require('mongoose'),
     compression = require('compression'),
     voucher = require('./api/voucher/voucher.js');
  
@@ -55,10 +57,16 @@ app.use(require('cookie-parser')(voucher.cookieSecret));
 app.use(require('express-session')({
     name : 'nodemcms',
     resave: true,
-    saveUninitialized: false,
+    saveUninitialized: true,
     secret: voucher.cookieSecret,
-    cookie: { maxAge: 60 * 10000 }
-    //store: sessionStore,
+    cookie: { maxAge: 60 * 1000 * 60 },
+    store: new MongoStore({
+        url: 'mongodb://localhost/onemall',
+        db: 'onemall',
+        collection: 'sessions',
+        autoRemove: 'interval',
+        autoRemoveInterval: 5
+    })
 }));
 app.use(flash());
 

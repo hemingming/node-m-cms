@@ -1,5 +1,6 @@
 
-var admindb = require('../models/admin/dbconfig.js'),
+const admindb = require('../models/admin/dbconfig'),
+      dologin = require('../models/admin/dologin'),
 	  crypto = require('crypto'),
 	  os = require('os');
 
@@ -12,25 +13,25 @@ module.exports = {
         app.post('/adminlogin*', this.adminSignin);
 
         //系统信息
-        app.get('/admin&adminmain*', this.adminMain);
+        app.get('/admin&adminmain*', dologin.islogin, this.adminMain);
 
-        //商品管理
-        app.get('/admin&mallgoods*', this.adminMallgoods);
-        app.get('/admin&pubgoods*', this.adminPubgoods);
+        //商品
+        app.get('/admin&mallgoods*', dologin.islogin, this.adminMallgoods);
+        app.get('/admin&pubgoods*',  dologin.islogin, this.adminPubgoods);
 
         app.post('/adminputitem*', this.adminPutitem);
 
-        //订单管理
-        app.get('/admin&ordersales*', this.adminOrdersales);
-        app.get('/admin&orderpayment*', this.adminOrderpayment);
+        //订单
+        app.get('/admin&ordersales*', dologin.islogin, this.adminOrdersales);
+        app.get('/admin&orderpayment*', dologin.islogin, this.adminOrderpayment);
 
-        //用户管理
-        app.get('/admin&userdatas*', this.adminUserdatas);
-        app.get('/admin&userinformation*', this.adminUserinformation);
+        //用户
+        app.get('/admin&userdatas*', dologin.islogin, this.adminUserdatas);
+        app.get('/admin&userinformation*', dologin.islogin, this.adminUserinformation);
 
-        //消息管理
-        app.get('/admin&news*', this.adminNews);
-        app.get('/admin&pubnews*', this.adminPubnews);
+        //消息
+        app.get('/admin&news*', dologin.islogin, this.adminNews);
+        app.get('/admin&pubnews*', dologin.islogin, this.adminPubnews);
 
     },
 
@@ -52,19 +53,21 @@ module.exports = {
 		var cookiekey = account;
 		var query = {account: account, password: password};
         
-        /*
-			onedb.adminuser.count(query, function(err, doc){
-				if(doc == 1){
-					res.cookie('Node_M_CMS', cookiekey, { httpOnly: false, signed: true, maxAge: 60*60*1000 }).redirect('/administrator-main/');
+        admindb.adminuser.count(query, function(err, data){
+				if(data == 1){
+
+					//res.cookie('Node_M_CMS', cookiekey, { httpOnly: false, signed: true, maxAge: 60*60*1000 }).redirect('/administrator-main/');
+                    req.session.regenerate(function(){
+                        req.session.account = account;
+                        req.session.save();  //保存一下修改后的Session
+                        res.redirect('/admin&adminmain?sid='+account);
+                    }); 
+
 				}else{
-					return res.redirect(303, '/administrator-login?error=no');
+                    req.flash('message','account error!');
+					return res.redirect(303, '/admin&login&sid=error');
 				}
-			})
-        */
-        
-        req.flash('message','account error!');
-        return res.redirect('/admin&login&sid=error');
-        console.log(query);
+        });
 	},
 
 
@@ -72,6 +75,7 @@ module.exports = {
         res.render('admin/home', {
             layout : 'adminmain',
 
+            sid         : req.query.sid,
 			sysname 	: os.hostname(),
 			sysplat 	: os.platform(),
 			sysversion  : os.release(),
@@ -86,34 +90,62 @@ module.exports = {
 
     adminMallgoods : function(req, res, next){
         res.render('admin/mallgoods', {
-            layout : 'adminmain'
+            layout : 'adminmain',
+
+            sid : req.query.sid
         })
     },
 
     adminPubgoods : function(req, res, next){
         res.render('admin/pubmallgoods', {
-            layout : 'adminmain'
+            layout : 'adminmain',
+            sid : req.query.sid
         })
-        console.log(888);
     },
 
     adminPutitem : function(req, res){
         
-        var itemtype    = req.body.itemType;    //商品类型
-        var itemname    = req.body.itemName;    //商品名称
-        var itemcode    = req.body.itemCode;    //商品编码
-        var itemnumber  = req.body.itemNumber;  //商品数量
-        var itemprice   = req.body.itemPrice;   //市场价格
-        var itemunit    = req.body.itemPriced;  //单次价格
-        var itemtoal    = req.body.itemPricec;  //总需价格
-        var itempic     = req.body.itemPic;        //文描图片
-        var itemimage   = req.body.itemImage;     //商品图片
-        var itemtext    = req.body.itemText;
+        var itemtype    = req.body.itemType;
+        var itemcode    = req.body.itemCode;   
+        var itemname    = req.body.itemName;    
+        var itemnumber  = req.body.itemNumber;  
+        var itemprice   = req.body.itemPrice;   
+        var itemunit    = req.body.itemPriced;  
+        var itemtoal    = req.body.itemPricec;  
+        var itempic     = req.body.itemPic;     
+        var itemimage   = req.body.itemImage;   
+        var itemtext    = req.body.itemText;    
         
-        console.log(itemtype);
-        req.flash('message','提交成功!');
-        return res.redirect('/admin&pubgoods&sid=pubgoods.html');
-
+        if(itemtype == '' || itemname == ''){
+            req.flash('message','提交失败!');
+            return res.redirect('/admin&pubgoods?sid='+req.session.account+'&pubgoods.html');
+        }else{
+			var query = {
+				//itemid: new mongoose.Types.ObjectId,
+                itemtype : itemtype,        //商品类型
+                
+                itemcode : itemcode,        //商品编码
+                itemname : itemname,        //商品名称
+                itemnumber : itemnumber,    //商品数量
+                itemprice : itemprice,      //市场价格
+                itemunit : itemunit,        //单次价格
+                itemtoal : itemtoal,        //总需价格
+                itempic : itempic,          //文描图片
+                itemimage : itemimage,      //商品图片
+                itemtext : itemtext,        //文字说明
+				iteamstate: 0,				//商品状态
+				teamtime: new Date			//发布日期
+			}
+			admindb.adminitem.create(query, function(err, data){
+				//if (err) return handleError(err);
+				if (err) return res.redirect('/admin&pubgoods?sid='+req.session.account+'&pubgoods.html');
+                req.flash('message','提交成功!');
+                return res.redirect('/admin&pubgoods?sid='+req.session.account+'&pubgoods.html');
+			});
+        }
+        
+        console.log(req.body);
+        
     },
 
 
