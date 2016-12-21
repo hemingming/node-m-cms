@@ -89,11 +89,15 @@ module.exports = {
 
 
     adminMallgoods : function(req, res, next){
-        res.render('admin/mallgoods', {
-            layout : 'adminmain',
+        admindb.adminitem.find({}, function(err, data){
+            res.render('admin/mallgoods', {
+                layout : 'adminmain',
+                sid : req.query.sid,
+                datas : data
+            })
+            console.log(data);
+        });
 
-            sid : req.query.sid
-        })
     },
 
     adminPubgoods : function(req, res, next){
@@ -112,8 +116,8 @@ module.exports = {
         var itemprice   = req.body.itemPrice;   
         var itemunit    = req.body.itemPriced;  
         var itemtoal    = req.body.itemPricec;  
-        var itempic     = req.body.itemPic;     
-        var itemimage   = req.body.itemImage;   
+        var itempic     = [req.body.itemPic1, req.body.itemPic2, req.body.itemPic3, req.body.itemPic4, req.body.appitemPic1, req.body.appitemPic2, req.body.appitemPic3, req.body.appitemPic4];     
+        var itemimage   = [req.body.itemImage1, req.body.itemImage2, req.body.itemImage3, req.body.itemImage4, req.body.appitemImage1, req.body.appitemImage2, req.body.appitemImage3, req.body.appitemImage4];
         var itemtext    = req.body.itemText;    
         
         if(itemtype == '' || itemname == ''){
@@ -133,7 +137,7 @@ module.exports = {
                 itempic : itempic,          //文描图片
                 itemimage : itemimage,      //商品图片
                 itemtext : itemtext,        //文字说明
-				iteamstate: 0,				//商品状态
+				itemstate: 1,				//商品状态
 				teamtime: new Date			//发布日期
 			}
 			admindb.adminitem.create(query, function(err, data){
@@ -144,7 +148,7 @@ module.exports = {
 			});
         }
         
-        console.log(req.body);
+        //console.log(req.body);
         
     },
 

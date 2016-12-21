@@ -12,7 +12,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="treeview">
-          <a href="/admin&adminmain&sid=admin.html">
+          <a href="/admin&adminmain?sid={{sid}}&admin.html">
             <i class="fa fa-dashboard"><span class="icon-bg bg-danger"></span></i> <span>系统信息</span>
           </a>
         </li>
@@ -26,7 +26,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/admin&mallgoods&sid=goods.html"><i class="fa fa-circle-o"></i> 商品列表</a></li>
+            <li><a href="/admin&mallgoods?sid={{sid}}&oods.html"><i class="fa fa-circle-o"></i> 商品列表</a></li>
             <li><a href="/admin&pubgoods&sid=pubgoods.html"><i class="fa fa-circle-o"></i> 发布商品</a></li>
           </ul>
         </li>
@@ -223,13 +223,32 @@
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label">商品文描：</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" name="itemPic" placeholder="图片地址逗号间隔">
+                                <p><input type="text" class="form-control" name="itemPic1" placeholder="pc图片地址"></p>
+                                <p><input type="text" class="form-control" name="itemPic2" placeholder="pc图片地址"></p>
+                                <p><input type="text" class="form-control" name="itemPic3" placeholder="pc图片地址"></p>
+                                <p><input type="text" class="form-control" name="itemPic4" placeholder="pc图片地址"></p>
                             </div>
+                            <div class="col-sm-5">
+                                <p><input type="text" class="form-control" name="appitemPic1" placeholder="app图片地址"></p>
+                                <p><input type="text" class="form-control" name="appitemPic2" placeholder="app图片地址"></p>
+                                <p><input type="text" class="form-control" name="appitemPic3" placeholder="app图片地址"></p>
+                                <p><input type="text" class="form-control" name="appitemPic4" placeholder="app图片地址"></p>
+                            </div>
+
                         </div>
                         <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 control-label">商品图片：</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" name="itemImage" placeholder="图片地址逗号间隔">
+                                <p><input type="text" class="form-control" name="itemImage1" placeholder="pc图片地址"></p>
+                                <p><input type="text" class="form-control" name="itemImage2" placeholder="pc图片地址"></p>
+                                <p><input type="text" class="form-control" name="itemImage3" placeholder="pc图片地址"></p>
+                                <p><input type="text" class="form-control" name="itemImage4" placeholder="pc图片地址"></p>
+                            </div>
+                            <div class="col-sm-5">
+                                <p><input type="text" class="form-control" name="appitemImage1" placeholder="app图片地址"></p>
+                                <p><input type="text" class="form-control" name="appitemImage2" placeholder="app图片地址"></p>
+                                <p><input type="text" class="form-control" name="appitemImage3" placeholder="app图片地址"></p>
+                                <p><input type="text" class="form-control" name="appitemImage4" placeholder="app图片地址"></p>
                             </div>
                         </div>
 

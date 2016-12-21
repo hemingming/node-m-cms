@@ -178,70 +178,24 @@
                         </tr>
                     </thead>
                     <tbody>
+                    {{#each datas}}
                         <tr>
-                            <td>1</td>
-                            <td>MX1</td>
-                            <td>数码产品</td>
-                            <td>iphone7 64G</td>
-                            <td><img src="{{static 'admin/images/upload/7.jpg'}}" class="user-product" alt="admin"></td>
-                            <td>&yen;6000.00</td>
-                            <td>&yen;7000.00</td>
-                            <td>&yen;1.00 /人次</td>
-                            <td>1000</td>
-                            <td>上架</td>
+                            <td>{{@index}}</td>
+                            <td>{{itemtype}}</td>
+                            <td>{{itemcode}}</td>
+                            <td>{{itemname}}</td>
+                            <td><img src="{{itemimage.[1]}}" class="user-product" alt="admin" width="50" height="50"></td>
+                            <td>&yen; {{itemprice}}.00</td>
+                            <td>&yen; {{itemtoal}}.00</td>
+                            <td>&yen; {{itemunit}}.00 /人次</td>
+                            <td>{{itemnumber}}</td>
+                            <td>{{itemstate}}</td>
                             <td>
                                 <button type="button" class="btn btn-default btn-sm">删除</button>
                                 <button type="button" class="btn btn-danger btn-sm">下架</button>
                             </td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>MX1</td>
-                            <td>数码产品</td>
-                            <td>iphone7 64G</td>
-                            <td><img src="{{static 'admin/images/upload/7.jpg'}}" class="user-product" alt="admin"></td>
-                            <td>&yen;6000.00</td>
-                            <td>&yen;7000.00</td>
-                            <td>&yen;1.00 /人次</td>
-                            <td>1000</td>
-                            <td>上架</td>
-                            <td>
-                                <button type="button" class="btn btn-default btn-sm">删除</button>
-                                <button type="button" class="btn btn-danger btn-sm">下架</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>MX1</td>
-                            <td>数码产品</td>
-                            <td>iphone7 64G</td>
-                            <td><img src="{{static 'admin/images/upload/7.jpg'}}" class="user-product" alt="admin"></td>
-                            <td>&yen;6000.00</td>
-                            <td>&yen;7000.00</td>
-                            <td>&yen;1.00 /人次</td>
-                            <td>1000</td>
-                            <td>上架</td>
-                            <td>
-                                <button type="button" class="btn btn-default btn-sm">删除</button>
-                                 <button type="button" class="btn btn-danger btn-sm">下架</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>MX1</td>
-                            <td>数码产品</td>
-                            <td>iphone7 64G</td>
-                            <td><img src="{{static 'admin/images/upload/7.jpg'}}" class="user-product" alt="admin"></td>
-                            <td>&yen;6000.00</td>
-                            <td>&yen;7000.00</td>
-                            <td>&yen;1.00 /人次</td>
-                            <td>1000</td>
-                            <td>下架</td>
-                            <td>
-                                <button type="button" class="btn btn-default btn-sm">删除</button>
-                                <button type="button" class="btn btn-success btn-sm">上架</button>
-                            </td>
-                        </tr>
+                    {{/each}}
                     </tbody>
                 </table>
             </div>

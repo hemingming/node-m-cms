@@ -29,10 +29,10 @@ var itemSchema = new Schema({
 	itemprice : Number,
 	itemunit : Number,
 	itemtoal : Number,
-	itempic : String,
-	itemimage : String,
+	itempic : [String],
+	itemimage : [String],
 	itemtext : String,
-	iteamstate: Number,
+	itemstate: Number,
 	teamtime: Date
 
 }, { versionKey: false });
