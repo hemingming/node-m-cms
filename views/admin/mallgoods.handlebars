@@ -181,7 +181,19 @@
                     {{#each datas}}
                         <tr>
                             <td class="itemid"></td>
-                            <td>{{itemtype}}</td>
+                            <td>
+                            <script>
+                              var type =  ~~{{itemtype}};
+                              if (type === 1) document.writeln('游戏影音');
+                              if (type === 2) document.writeln('手机数码');
+                              if (type === 3) document.writeln('母婴商品');
+                              if (type === 4) document.writeln('美妆商品');
+                              if (type === 5) document.writeln('轻奢物品');
+                              if (type === 6) document.writeln('水果保健食品');
+                              if (type === 7) document.writeln('黄金珠宝');
+                              if (type === 8) document.writeln('生活用品');
+                            </script>
+                            </td>
                             <td>{{itemcode}}</td>
                             <td>{{itemname}}</td>
                             <td><img src="{{itemimage.[0]}}" class="user-product" alt="admin" width="50" height="50"></td>
@@ -189,10 +201,13 @@
                             <td>&yen; {{itemtoal}}.00</td>
                             <td>&yen; {{itemunit}}.00 /人次</td>
                             <td>{{itemnumber}}</td>
-                            <td><script>var state = {{itemstate}};(state == 1)?document.writeln('上架'):document.writeln('下架');</script></td>
+                            <td>
+                                <script>var state = {{itemstate}};(state == 1)?document.writeln('上架'):document.writeln('下架');</script>
+                            </td>
                             <td>
                                 <button type="button" class="btn btn-default btn-sm">删除</button>
-                                <button type="button" class="btn btn-danger btn-sm">下架</button>
+                                <script>var state = {{itemstate}};(state == 1)?document.writeln('<button type="button" class="btn btn-danger btn-sm">下架</button>'):document.writeln('<button type="button" class="btn btn-success btn-sm">上架</button>');</script>
+                                
                             </td>
                         </tr>
                     {{/each}}
@@ -220,11 +235,11 @@
 <script>
     $(function(){
         var number = ~~{{pageCount}};
-        var pp = window.location.href.split('page=')[1];
-        var np = number - pp
+        var page = window.location.href.split('page=')[1];
+
         for (var i = 0; i < $('.itemid').length;i+=1){
-            $('.itemid').eq(i).html(i+1);
-        }  
+            $('.itemid').eq(i).html((page -1) * 10 + (i +1));
+        }
 
         $(".tcdPageCode").createPage({
             pageCount: Math.ceil({{pageCount}} / 10),

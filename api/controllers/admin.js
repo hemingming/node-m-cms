@@ -3,7 +3,7 @@ const crypto = require('crypto'),
 	  os = require('os'),
       admindb = require('../models/admin/dbconfig'),
       dologin = require('../models/admin/dologin'),
-	  dbHelper = require('../models/admin/page.js');
+	  dbPage = require('../models/admin/page.js');
 
 
 module.exports = {
@@ -59,6 +59,7 @@ module.exports = {
 
 					//res.cookie('Node_M_CMS', cookiekey, { httpOnly: false, signed: true, maxAge: 60*60*1000 }).redirect('/administrator-main/');
                     req.session.regenerate(function(){
+                        req.session.user = req.body.account;
                         req.session.account = account;
                         req.session.save();  //保存一下修改后的Session
                         res.redirect('/admin&adminmain?sid='+account);
@@ -76,7 +77,7 @@ module.exports = {
     adminMain : function(req, res, next){
         res.render('admin/home', {
             layout : 'adminmain',
-
+            user : req.session.user,
             sid         : req.query.sid,
 			sysname 	: os.hostname(),
 			sysplat 	: os.platform(),
@@ -94,7 +95,7 @@ module.exports = {
 
         var page = req.query.page || 1;
         var Article = admindb.adminitem;
-        dbHelper.pageQuery(page, 10, Article, '', {}, {
+        dbPage.pageQuery(page, 10, Article, '', {}, {
             created_time: 'desc'
         }, function(error, $page){
             if(error){
@@ -103,7 +104,7 @@ module.exports = {
                 res.render('admin/mallgoods',{
                     layout : 'adminmain',
                     sid : req.query.sid,
-
+                    user : req.session.user,
                     datas : $page.results,
                     pageNow : $page.pageNumber,
                     pageCount : $page.pageCount
@@ -126,6 +127,7 @@ module.exports = {
     adminPubgoods : function(req, res, next){
         res.render('admin/pubmallgoods', {
             layout : 'adminmain',
+            user : req.session.user,
             sid : req.query.sid
         })
     },
@@ -185,39 +187,45 @@ module.exports = {
 
     adminOrdersales : function(req, res, next){
         res.render('admin/ordersales', {
-            layout : 'adminmain'
+            layout : 'adminmain',
+            user : req.session.user
         })
     },
 
     adminOrderpayment : function(req, res, next){
         res.render('admin/orderpayment', {
-            layout : 'adminmain'
+            layout : 'adminmain',
+            user : req.session.user
         })
     },
 
 
     adminUserdatas : function(req, res, next){
         res.render('admin/userdatas', {
-            layout : 'adminmain'
+            layout : 'adminmain',
+            user : req.session.user
         })  
     },
 
     adminUserinformation : function(req, res, next){
         res.render('admin/userinformation', {
-            layout : 'adminmain'
+            layout : 'adminmain',
+            user : req.session.user
         })  
     },    
 
 
     adminNews : function(req, res, next){
         res.render('admin/mallgoods', {
-            layout : 'adminmain'
+            layout : 'adminmain',
+            user : req.session.user
         })
     },
 
     adminPubnews : function(req, res, next){
         res.render('admin/mallgoods', {
-            layout : 'adminmain'
+            layout : 'adminmain',
+            user : req.session.user
         })
     }
 
