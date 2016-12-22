@@ -27,7 +27,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/admin&mallgoods?sid={{sid}}&goods.html"><i class="fa fa-circle-o"></i> 商品列表</a></li>
+            <li><a href="/admin&mallgoods?sid={{sid}}&page=1"><i class="fa fa-circle-o"></i> 商品列表</a></li>
             <li><a href="/admin&pubgoods?sid={{sid}}&pubgoods.html"><i class="fa fa-circle-o"></i> 发布商品</a></li>
           </ul>
         </li>
@@ -180,16 +180,16 @@
                     <tbody>
                     {{#each datas}}
                         <tr>
-                            <td>{{@index}}</td>
+                            <td class="itemid"></td>
                             <td>{{itemtype}}</td>
                             <td>{{itemcode}}</td>
                             <td>{{itemname}}</td>
-                            <td><img src="{{itemimage.[1]}}" class="user-product" alt="admin" width="50" height="50"></td>
+                            <td><img src="{{itemimage.[0]}}" class="user-product" alt="admin" width="50" height="50"></td>
                             <td>&yen; {{itemprice}}.00</td>
                             <td>&yen; {{itemtoal}}.00</td>
                             <td>&yen; {{itemunit}}.00 /人次</td>
                             <td>{{itemnumber}}</td>
-                            <td>{{itemstate}}</td>
+                            <td><script>var state = {{itemstate}};(state == 1)?document.writeln('上架'):document.writeln('下架');</script></td>
                             <td>
                                 <button type="button" class="btn btn-default btn-sm">删除</button>
                                 <button type="button" class="btn btn-danger btn-sm">下架</button>
@@ -198,7 +198,10 @@
                     {{/each}}
                     </tbody>
                 </table>
+    
             </div>
+
+            <div class="tcdPageCode"></div>
 
         </div>
     </section>
@@ -213,3 +216,24 @@
 <!-- ./wrapper -->
 
 {{> admin/footer}}
+<script src="{{static '/admin/scripts/jquery.page.js'}}"></script>
+<script>
+    $(function(){
+        var number = ~~{{pageCount}};
+        var pp = window.location.href.split('page=')[1];
+        var np = number - pp
+        for (var i = 0; i < $('.itemid').length;i+=1){
+            $('.itemid').eq(i).html(i+1);
+        }  
+
+        $(".tcdPageCode").createPage({
+            pageCount: Math.ceil({{pageCount}} / 10),
+            current: {{pageNow}},
+            backFn:function(p){
+                var url = window.location.href.split('page')[0]+'page='+p;
+                window.location.href=url;
+            }
+        });
+    })
+
+</script>

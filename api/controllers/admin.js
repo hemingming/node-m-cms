@@ -1,8 +1,9 @@
 
-const admindb = require('../models/admin/dbconfig'),
+const crypto = require('crypto'),
+	  os = require('os'),
+      admindb = require('../models/admin/dbconfig'),
       dologin = require('../models/admin/dologin'),
-	  crypto = require('crypto'),
-	  os = require('os');
+	  dbHelper = require('../models/admin/page.js');
 
 
 module.exports = {
@@ -67,6 +68,7 @@ module.exports = {
                     req.flash('message','account error!');
 					return res.redirect(303, '/admin&login&sid=error');
 				}
+                //db.close();
         });
 	},
 
@@ -89,6 +91,27 @@ module.exports = {
 
 
     adminMallgoods : function(req, res, next){
+
+        var page = req.query.page || 1;
+        var Article = admindb.adminitem;
+        dbHelper.pageQuery(page, 10, Article, '', {}, {
+            created_time: 'desc'
+        }, function(error, $page){
+            if(error){
+                next(error);
+            }else{
+                res.render('admin/mallgoods',{
+                    layout : 'adminmain',
+                    sid : req.query.sid,
+
+                    datas : $page.results,
+                    pageNow : $page.pageNumber,
+                    pageCount : $page.pageCount
+                })
+            }
+        });
+
+        /*
         admindb.adminitem.find({}, function(err, data){
             res.render('admin/mallgoods', {
                 layout : 'adminmain',
@@ -97,7 +120,7 @@ module.exports = {
             })
             console.log(data);
         });
-
+        */
     },
 
     adminPubgoods : function(req, res, next){
@@ -124,10 +147,11 @@ module.exports = {
             req.flash('message','提交失败!');
             return res.redirect('/admin&pubgoods?sid='+req.session.account+'&pubgoods.html');
         }else{
+
 			var query = {
 				//itemid: new mongoose.Types.ObjectId,
+                //itemid : req.body.itemid,
                 itemtype : itemtype,        //商品类型
-                
                 itemcode : itemcode,        //商品编码
                 itemname : itemname,        //商品名称
                 itemnumber : itemnumber,    //商品数量
@@ -140,12 +164,18 @@ module.exports = {
 				itemstate: 1,				//商品状态
 				teamtime: new Date			//发布日期
 			}
+
 			admindb.adminitem.create(query, function(err, data){
 				//if (err) return handleError(err);
-				if (err) return res.redirect('/admin&pubgoods?sid='+req.session.account+'&pubgoods.html');
+				if (err){
+                    console.log(err);
+                    return res.redirect('/admin&pubgoods?sid='+req.session.account+'&pubgoods.html');
+                }
                 req.flash('message','提交成功!');
                 return res.redirect('/admin&pubgoods?sid='+req.session.account+'&pubgoods.html');
+                //db.close();
 			});
+
         }
         
         //console.log(req.body);
