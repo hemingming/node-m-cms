@@ -27,7 +27,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="/admin&mallgoods?sid={{sid}}&page=1"><i class="fa fa-circle-o"></i> 商品列表</a></li>
-            <li><a href="/admin&pubgoods&sid=pubgoods.html"><i class="fa fa-circle-o"></i> 发布商品</a></li>
+            <li><a href="/admin&pubgoods?sid={{sid}}&pubgoods.html" class="on"><i class="fa fa-circle-o"></i> 发布商品</a></li>
           </ul>
         </li>
 
@@ -40,8 +40,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/admin&ordersales&sid=sales.html"><i class="fa fa-circle-o"></i> 销售订单</a></li>
-            <li><a href="/admin&orderpayment&sid=payment.html"><i class="fa fa-circle-o"></i> 支付订单</a></li>
+            <li><a href="/admin&ordersales?sid={{sid}}&page=1"><i class="fa fa-circle-o"></i> 销售订单</a></li>
+            <li><a href="/admin&orderpayment?sid={{sid}}&page=1"><i class="fa fa-circle-o"></i> 支付订单</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -53,8 +53,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/admin&userdatas&sid=user.html"><i class="fa fa-circle-o"></i> 用户列表</a></li>
-            <li><a href="/admin&userinformation&sid=user.html"><i class="fa fa-circle-o"></i> 用户信息</a></li>
+            <li><a href="/admin&userdatas?sid={{sid}}&user.html"><i class="fa fa-circle-o"></i> 用户列表</a></li>
+            <li><a href="/admin&userinformation?sid={{sid}}&user.html"><i class="fa fa-circle-o"></i> 用户信息</a></li>
 
           </ul>
         </li>
@@ -67,8 +67,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/admin&news&sid=news.html"><i class="fa fa-circle-o"></i> 消息列表</a></li>
-            <li><a href="/admin&pubnews&sid=news.html"><i class="fa fa-circle-o"></i> 消息发布</a></li>
+            <li><a href="/admin&news?sid={{sid}}&news.html"><i class="fa fa-circle-o"></i> 消息列表</a></li>
+            <li><a href="/admin&pubnews?sid={{sid}}&news.html"><i class="fa fa-circle-o"></i> 消息发布</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -255,7 +255,6 @@
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <button type="submit" class="btn btn-success btn-w-md">提 交</button>
-                                <p>{{message}}</p>
                             </div>
                         </div>
                     </form>  

@@ -27,7 +27,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/admin&mallgoods?sid={{sid}}&page=1"><i class="fa fa-circle-o"></i> 商品列表</a></li>
+            <li><a href="/admin&mallgoods?sid={{sid}}&page=1" class="on"><i class="fa fa-circle-o"></i> 商品列表</a></li>
             <li><a href="/admin&pubgoods?sid={{sid}}&pubgoods.html"><i class="fa fa-circle-o"></i> 发布商品</a></li>
           </ul>
         </li>
@@ -41,8 +41,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/admin&ordersales&sid=sales.html"><i class="fa fa-circle-o"></i> 销售订单</a></li>
-            <li><a href="/admin&orderpayment&sid=payment.html"><i class="fa fa-circle-o"></i> 支付订单</a></li>
+            <li><a href="/admin&ordersales?sid={{sid}}&page=1"><i class="fa fa-circle-o"></i> 销售订单</a></li>
+            <li><a href="/admin&orderpayment?sid={{sid}}&page=1"><i class="fa fa-circle-o"></i> 支付订单</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -67,8 +67,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/admin&news&sid=news.html"><i class="fa fa-circle-o"></i> 消息列表</a></li>
-            <li><a href="/admin&pubnews&sid=news.html"><i class="fa fa-circle-o"></i> 消息发布</a></li>
+            <li><a href="/admin&news?sid={{sid}}&news.html"><i class="fa fa-circle-o"></i> 消息列表</a></li>
+            <li><a href="/admin&pubnews?sid={{sid}}&news.html"><i class="fa fa-circle-o"></i> 消息发布</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -206,8 +206,11 @@
                             </td>
                             <td>
                                 <button type="button" class="btn btn-default btn-sm">删除</button>
-                                <script>var state = {{itemstate}};(state == 1)?document.writeln('<button type="button" class="btn btn-danger btn-sm">下架</button>'):document.writeln('<button type="button" class="btn btn-success btn-sm">上架</button>');</script>
-                                
+
+                                <script>
+                                var state = {{itemstate}};(state == 1)?document.writeln('<button type="button" class="btn puton btn-danger btn-sm" node-data="{{_id}},{{itemtype}},{{itemname}},{{itemtoal}}" node-state="{{itemstate}}">下架</button>'):document.writeln('<button type="button" class="btn puton btn-success btn-sm" node-data="{{_id}},{{itemtype}},{{itemname}},{{itemtoal}}" node-state="{{itemstate}}">上架</button>');
+                                </script>
+
                             </td>
                         </tr>
                     {{/each}}
@@ -249,6 +252,37 @@
                 window.location.href=url;
             }
         });
+
+
+        $('button.puton').on('click', function(){
+              var data = $(this).attr('node-data').split(',');
+              var state = $(this).attr('node-state');
+              var that = $(this);
+              $.ajax({
+                  url: "/putonlineitems.html",
+                  method: "POST",
+                  data: {id : data[0], state : state, type : data[1], name : data[2], total : data[3]},
+                  dataType: "json"
+              }).done(function(data){
+                  if(data.ok === 1){
+                      if(state == 0){
+                        that.removeClass('btn-success').addClass('btn-danger').text('下架').parents('td').prev('td').html('上架');
+                        that.attr('node-state', 1);
+                      }
+
+                      if(state == 1){
+                        that.html('上架').parents('td').prev('td').text('下架');
+                        that.removeClass('btn-danger').addClass('btn-success');
+                        that.attr('node-state', 0);
+                      }
+                  }
+                  
+              }).fail(function(error){
+                  console.log(error);
+              });
+              
+        });
+
     })
 
 </script>

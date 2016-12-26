@@ -13,7 +13,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="treeview">
-          <a href="/admin&adminmain&sid=admin.html">
+          <a href="/admin&adminmain?sid={{sid}}&admin.html">
             <i class="fa fa-dashboard"><span class="icon-bg bg-danger"></span></i> <span>系统信息</span>
           </a>
         </li>
@@ -27,8 +27,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/admin&mallgoods&sid=goods.html"><i class="fa fa-circle-o"></i> 商品列表</a></li>
-            <li><a href="/admin&pubgoods&sid=pubgoods.html"><i class="fa fa-circle-o"></i> 发布商品</a></li>
+            <li><a href="/admin&mallgoods?sid={{sid}}&page=1"><i class="fa fa-circle-o"></i> 商品列表</a></li>
+            <li><a href="/admin&pubgoods?sid={{sid}}&pubgoods.html"><i class="fa fa-circle-o"></i> 发布商品</a></li>
           </ul>
         </li>
 
@@ -41,8 +41,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/admin&ordersales&sid=sales.html"><i class="fa fa-circle-o"></i> 销售订单</a></li>
-            <li><a href="/admin&orderpayment&sid=payment.html"><i class="fa fa-circle-o"></i> 支付订单</a></li>
+            <li><a href="/admin&ordersales?sid={{sid}}&page=1"><i class="fa fa-circle-o"></i> 销售订单</a></li>
+            <li><a href="/admin&orderpayment?sid={{sid}}&page=1"><i class="fa fa-circle-o"></i> 支付订单</a></li>
           </ul>
         </li>
         <li class="active treeview">
@@ -54,8 +54,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/admin&userdatas&sid=user.html"><i class="fa fa-circle-o"></i> 用户列表</a></li>
-            <li><a href="/admin&userinformation&sid=user.html"><i class="fa fa-circle-o"></i> 用户信息</a></li>
+            <li><a href="/admin&userdatas?sid={{sid}}&user.html"><i class="fa fa-circle-o"></i> 用户列表</a></li>
+            <li><a href="/admin&userinformation?sid={{sid}}&user.html" class="on"><i class="fa fa-circle-o"></i> 用户信息</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -67,8 +67,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="/admin&news&sid=news.html"><i class="fa fa-circle-o"></i> 消息列表</a></li>
-            <li><a href="/admin&pubnews&sid=news.html"><i class="fa fa-circle-o"></i> 消息发布</a></li>
+            <li><a href="/admin&news?sid={{sid}}&news.html"><i class="fa fa-circle-o"></i> 消息列表</a></li>
+            <li><a href="/admin&pubnews?sid={{sid}}&news.html"><i class="fa fa-circle-o"></i> 消息发布</a></li>
           </ul>
         </li>
         <li class="treeview">

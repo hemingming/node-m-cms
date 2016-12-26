@@ -16,8 +16,11 @@ db.on('open', function(error){
 });
 
 
+/**
+ * 数据模型
+ */
 
-var userSchema = new Schema({
+var adminSchema = new Schema({
 	account: String,
 	password: String
 
@@ -42,10 +45,49 @@ var itemSchema = new Schema({
 }, { versionKey: false });
 
 
+var sellSchema = new Schema({
+    ordernumber : {type : String},
+    orderstate : Number,
+    itemtype : {type : Number},
+    itemname : String,
+    totalgold : Number,
+    overgold : Number,
+    surplusgold : Number,
+    paycode : Number,
+    getgoods : String,    
+    paygolds : Number,
+    city : String,
+    starttime : String,
+    endtime : String,
+    teamtime: {type : Date, default : Date.now}
+}, { versionKey: false});
 
-exports.adminuser = mongoose.model('onemalladmin', userSchema, 'onemalladmin');
+var userSchema = new Schema({
+    account : { type : String, required : true},
+    password : { type : String, required : true},
+    nickname : { type : String},
+    tel : Number,
+    grade : String,
+    wechat : String,
+    email : String,
+    head : String,
+    sumgold : Number,
+    amountgold : Number,
+    friends : [String],
+    userip : String,
+    city : String,
+    address : String,
+    teamtime: {type : Date, default : Date.now}
+}, { versionKey: false});
+
+
+exports.adminuser = mongoose.model('onemalladmin', adminSchema, 'onemalladmin');
 
 exports.adminitem = mongoose.model('onemallitems', itemSchema);
+
+exports.adminsell = mongoose.model('onemallsells', sellSchema);
+
+exports.adminpersons = mongoose.model('onemallusers', userSchema);
 
 
 
